@@ -127,13 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="compare.c" />
     <ClCompile Include="compression.c" />
     <ClCompile Include="compressor.c" />
     <ClCompile Include="deCompression.c" />
+    <ClCompile Include="file_operation.c" />
+    <ClCompile Include="utities.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="compare.h" />
     <ClInclude Include="compression.h" />
     <ClInclude Include="deCompression.h" />
+    <ClInclude Include="file_operaitions_API.h" />
+    <ClInclude Include="utities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
