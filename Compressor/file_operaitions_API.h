@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-#define MAX_PASH 100
-#define DATA_SIZE 10000
+#define MAX_PASH 256
+#define DATA_SIZE 4096
 #include <stdio.h>
 #include <stdlib.h>
 #include "utities.h"
