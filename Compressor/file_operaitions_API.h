@@ -4,8 +4,9 @@
 #include <stdlib.h>
 #include "utities.h"
 
-char* read_file();
+char* readFile();
 char* data_To_write();
-void write_file();
-FILE* open_file(char*, char);
-void close_file(FILE*);
+void writeFile();
+FILE* openFile(char*, char*);
+FILE* openFile1(char*, char*);
+void closeFile(FILE*);
