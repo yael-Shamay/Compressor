@@ -1,7 +1,11 @@
 #include "compare.h"
 Bool compare() {
+	FILE* compressFile = openFile(getPath(), "rb");
+	FILE* deCompressFile = openFile(getPath(), "rb");
+	int size1, size2;
+	while (size1 && size2)
+	{
 
+	}
 }
-Bool checke_file_extension(char* path_file, char* file_extension) {
 
-}
