@@ -9,3 +9,4 @@ typedef enum { True, False } Bool;
 char* getPath();
 void getFileExtention(char*, char**);
 Bool IsValidTextFileExtention(char* path);
+char* getRelativePath(char * srcPath);

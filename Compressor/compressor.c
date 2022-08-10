@@ -1,9 +1,11 @@
 #include "deCompression.h"
 #include "compression.h"
 #include "compare.h"
+#include <stdio.h>
+#include <stdlib.h>
 /////////////////////////////file open
 typedef enum { COMPRESSION, DE_COMPRESSION, COMPARE, DUMMY }Option;
-#define BUFFER 256
+#define BUFFER_SIZE 256
 void menu();
 void run_dummy_case();
 void run_choosed_option(Option);
@@ -22,20 +24,16 @@ void menu() {
 void run_dummy_case() {
 	char* srcFilePath = getPath();
     IsValidTextFileExtention(srcFilePath);
-	char* outputFilePath ="C:\\Users\\pc\\Desktop\\project\\project\\newProject\\Compressor\\outFile.txt";
-	printf("\n%s", outputFilePath );
+	char* outputFilePath ="C:\\Users\\pc\\Desktop\\project\\project\\newProject\\Compressor\\out.rmy";
 	FILE* srcFd, * outFd;
-	//open2Files
-	srcFd = openFile(srcFilePath, "r");//rb
-	outFd = openFile1(outputFilePath,"w");
-	//in while loop till end of srcFile :
-	///  read
-	char buf[BUFFER];
-	while (fgets(buf, sizeof(BUFFER), srcFd) != NULL) {
-	///	write
-		fputs(buf, outFd);
-	}
-	//closeFiles
+	srcFd = openFile(srcFilePath,"rb");
+	outFd = openFile(outputFilePath, "w+b");
+	char buf[BUFFER_SIZE];
+    int len;
+	do {
+		len = readDataFromFile(buf, 1, BUFFER_SIZE, srcFd);
+		writeDataToFile(&buf,1,len, outFd);
+	} while (len );
 	closeFile(srcFd);
 	closeFile(outFd);
 }
