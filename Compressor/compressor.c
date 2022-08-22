@@ -29,10 +29,16 @@ void menu() {
 	runChoosedOption(selection);
 }
 void runDummyCase() {
-	char* srcFilePath = getPath();
-    isValidTextFileExtention(srcFilePath);
-	printf("%s", srcFilePath);
+	char srcFilePath[MAX_PATH_LEN];
+	getPathToBuffer(srcFilePath,"Enter file path to run dummy:");
+
 	char outputFilePath[MAX_PATH_LEN];
+	if (!isValidTextFileExtention(srcFilePath))
+	{
+		printf("File type error\n");
+		exit(1);
+	}
+	printf("%s", srcFilePath);
 	getReletivePath(srcFilePath,&outputFilePath);
 	printf("%s - srcFilePath", srcFilePath);
 	printf("%s - outputFilePath", outputFilePath);

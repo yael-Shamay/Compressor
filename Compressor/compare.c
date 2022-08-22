@@ -1,7 +1,10 @@
 #include "compare.h"
 Bool compare() {
-	FILE* compressFile = openFile(getPath(), "rb");
-	FILE* deCompressFile = openFile(getPath(), "rb");
+	char compressedFilename[MAX_PATH_LEN], decompressedFilename[MAX_PATH_LEN];
+	getPathToBuffer(compressedFilename, "Enter compressed file path:");
+	getPathToBuffer(decompressedFilename, "Enter decompressed file path:");
+	FILE* compressFile = openFile(compressedFilename, "rb");
+	FILE* deCompressFile = openFile(decompressedFilename, "rb");
 	int len1=1,len2=1;
 	char buf1[BUFFER_SIZE], buf2[BUFFER_SIZE];
 	while (len1 && len2)

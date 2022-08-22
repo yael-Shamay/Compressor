@@ -1,11 +1,22 @@
 #include "utities.h"
+//TODO remove this function
 char* getPath() {
+	printf("remove this function\n");
+	return 0;
 	char path[MAX_PATH_LEN];
 	printf("Insert a file path\n");
 	getchar();
-	gets(path);
+	scanf("%s",path);
 	puts(path);
 	return path;
+}
+void getPathToBuffer(char* pathBuffer, char* enterPathMessage) {
+	printf(enterPathMessage);
+	printf("\n");
+	getchar();
+	scanf("%s", pathBuffer);
+	//TODO - remove later
+	puts(pathBuffer);
 }
 void getFileExtention(const char* filePath, char** extention)
 {
@@ -27,35 +38,20 @@ Bool isValidTextFileExtention(const char* path) {
 		if (strcmp(fileExtention,validTextExtentions[i])==0)
 			return True;
 	}
-	printf("error type");
-	exit(1);
 	return False;
 }
-void getReletivePath(const char* srcPath, char** desPath) {
+void getReletivePath(char* srcPath, char** desPath) {
 	printf("%s", srcPath);
 	int indexCat = 0;
 	char newPath[MAX_PATH_LEN];
-	for (size_t i = 0; i < strlen(desPath); i++)
+	int len = strlen(srcPath);
+	for (int i = 0; i < len; i++)
 	{
-		if (desPath[i] == '\\')
+		if (srcPath[i] == '\\')
 			indexCat = i;
-		newPath[i] = desPath[i];
+		newPath[i] = srcPath[i];
 	}
 	newPath[indexCat] = '\0';
 	//strcat(newPath,"out.rmy");
 	*desPath = newPath;
 }
-//char* getReletivePath(const char* srcPath) {
-//	printf("%s",srcPath);
-//	int indexCat = 0;
-//	char desPath[MAX_PATH_LEN];
-//	for (size_t i = 0; i < strlen(srcPath); i++)
-//	{
-//		if (srcPath[i] == '\\')
-//			indexCat = i;
-//		desPath[i] = srcPath[i];
-//	}
-//	desPath[indexCat + 1] = '\0';
-//	//strcat(desPath,"out.rmy");
-//	return desPath;
-//}
