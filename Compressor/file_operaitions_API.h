@@ -4,5 +4,5 @@
 #include "utities.h"
 void writeDataToFile(char* srcBuffer, int size, int count, FILE* outFd);
 int readDataFromFile(char* destBuffer, int size, int count, FILE* srcFd);
-FILE* openFile(char*, char*);
+FILE* openFile(char* path, char* mode);
 void closeFile(FILE*);

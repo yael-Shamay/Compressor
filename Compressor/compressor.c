@@ -7,6 +7,14 @@
 typedef enum { COMPRESSION, DE_COMPRESSION, COMPARE, DUMMY }Option;
 #define BUFFER_SIZE 256
 void menu();
+ void lzw_writebuf(void* stream, char* buf, unsigned size)
+{
+	fwrite(buf, size, 1, (FILE*)stream);
+}
+ unsigned lzw_readbuf(void* stream, char* buf, unsigned size)
+{
+	return fread(buf, 1, size, (FILE*)stream);
+}
 void run_dummy_case();
 void run_choosed_option(Option);
 void main() {
@@ -37,6 +45,13 @@ void run_dummy_case() {
 	closeFile(srcFd);
 	closeFile(outFd);
 }
+//void lzw_writebuf(void* stream, char* buf, unsigned size)
+//{
+//	fwrite(buf, size, 1, (FILE*)stream);
+//}
+// global object
+
+
 void run_choosed_option(Option selection) {
 	char* file_deCompression;
 	char* file_compression;
@@ -44,8 +59,7 @@ void run_choosed_option(Option selection) {
 	switch (selection)
 	{
 	case COMPRESSION:
-		//file_compression = compression();
-		//printf("%s", file_compression);
+		theCompression();
 		break;
 	case DE_COMPRESSION:
 		file_deCompression = deCompression();
