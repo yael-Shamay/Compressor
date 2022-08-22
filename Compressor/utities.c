@@ -7,7 +7,6 @@ char* getPath() {
 	printf("Insert a file path\n");
 	getchar();
 	scanf("%s",path);
-	puts(path);
 	return path;
 }
 void getPathToBuffer(char* pathBuffer, char* enterPathMessage) {
@@ -16,23 +15,20 @@ void getPathToBuffer(char* pathBuffer, char* enterPathMessage) {
 	getchar();
 	scanf("%s", pathBuffer);
 	//TODO - remove later
-	puts(pathBuffer);
 }
 void getFileExtention(const char* filePath, char** extention)
 {
-	*extention = strchr(filePath, '.');
-	/*printf("\n------path----------");
-	printf("\n%s", filePath);
-	printf("\n------extention----------");
-	printf("\n%s",*extention);*/
+	for (size_t i = 0; i < strlen(filePath); i++)
+	{
+		if (filePath[i] == '.')
+			*extention = filePath + i;
+	}
 }
 Bool isValidTextFileExtention(const char* path) {
 	char* fileExtention;
 	char* validTextExtentions[EXTENTION_LEN] = { "c","cpp","css","py","txt","java" };
 	getFileExtention(path,&fileExtention);
-	//remove the first char '.'
 	fileExtention += 1;
-	printf("\n%s",fileExtention);
 	for (int i = 0; i < sizeof(validTextExtentions)-1 / EXTENTION_LEN; i++)
 	{
 		if (strcmp(fileExtention,validTextExtentions[i])==0)
@@ -41,7 +37,6 @@ Bool isValidTextFileExtention(const char* path) {
 	return False;
 }
 void getReletivePath(char* srcPath, char** desPath) {
-	printf("%s", srcPath);
 	int indexCat = 0;
 	char newPath[MAX_PATH_LEN];
 	int len = strlen(srcPath);
