@@ -2,9 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utities.h"
-"file_operaitions_API.h"
+#include "fileOperaitionAPI.h"
 #pragma once
-#include <stdio.h>
 #define DICT_SIZE	(1 << 20)
 #define HASH_SIZE  DICT_SIZE
 #define BUFF_SIZE  10
@@ -47,4 +46,3 @@ void lzw_enc_end(lzw_enc* ctx);
 
 void lzw_writebuf(void* stream, char* buf, unsigned size);
 unsigned lzw_readbuf(void* stream, char* buf, unsigned size);
-char* compression();
