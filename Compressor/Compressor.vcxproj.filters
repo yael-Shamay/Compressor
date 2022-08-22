@@ -24,7 +24,7 @@
     <ClCompile Include="compression.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="file_operation.c">
+    <ClCompile Include="fileOperation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="utities.c">
@@ -41,7 +41,7 @@
     <ClInclude Include="compression.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="file_operaitions_API.h">
+    <ClInclude Include="fileOperaitionAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utities.h">

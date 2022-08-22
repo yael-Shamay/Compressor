@@ -3,12 +3,11 @@
 #include "compare.h"
 #include <stdio.h>
 #include <stdlib.h>
-/////////////////////////////file open
 typedef enum { COMPRESSION, DE_COMPRESSION, COMPARE, DUMMY }Option;
-#define BUFFER_SIZE 256
+//#define BUFFER_SIZE 256
 void menu();
-void run_dummy_case();
-void run_choosed_option(Option);
+void runDummyCase();
+void runChoosedOption(Option);
 void main() {
 	menu();
 }
@@ -19,43 +18,50 @@ void menu() {
 	printf("press 2 to compare two files\n");
 	printf("press 3 for dummy\n");
 	scanf_s("%d", &selection);
-	run_choosed_option(selection);
+	runChoosedOption(selection);
 }
-void run_dummy_case() {
+void runDummyCase() {
 	char* srcFilePath = getPath();
-    IsValidTextFileExtention(srcFilePath);
-	char* outputFilePath ="C:\\Users\\pc\\Desktop\\project\\project\\newProject\\Compressor\\out.rmy";
-	FILE* srcFd, * outFd;
+    isValidTextFileExtention(srcFilePath);
+	printf("%s", srcFilePath);
+	char outputFilePath[MAX_PATH_LEN];
+	getReletivePath(srcFilePath,&outputFilePath);
+	printf("%s - srcFilePath", srcFilePath);
+	printf("%s - outputFilePath", outputFilePath);
+//	char* outputFilePath = getReletivePath(srcFilePath);
+	FILE* srcFd,* outFd;
 	srcFd = openFile(srcFilePath,"rb");
 	outFd = openFile(outputFilePath, "w+b");
 	char buf[BUFFER_SIZE];
     int len;
 	do {
-		len = readDataFromFile(buf, 1, BUFFER_SIZE, srcFd);
-		writeDataToFile(&buf,1,len, outFd);
-	} while (len );
+		len = readDataFromFile(buf,BUFFER_SIZE, srcFd);
+		writeDataToFile(&buf,len, outFd);
+	} while(len);
 	closeFile(srcFd);
 	closeFile(outFd);
 }
-void run_choosed_option(Option selection) {
-	char* file_deCompression;
-	char* file_compression;
-	Bool same_data;
+void runChoosedOption(Option selection) {
+	char* fileDeCompression;
+	char* fileCompression;
+	Bool isSamedata;
 	switch (selection)
 	{
 	case COMPRESSION:
-		//file_compression = compression();
-		//printf("%s", file_compression);
+		//fileCompression = compression();
+		//printf("%s", fileCompression);
 		break;
 	case DE_COMPRESSION:
-		file_deCompression = deCompression();
-		printf("%s", file_deCompression);
+		fileDeCompression = deCompression();
+		printf("%s", fileDeCompression);
 		break;
 	case COMPARE:
-		same_data = compare();
+		isSamedata = compare();
+		isSamedata ? printf("there is diffrance betwen the files "):
+			printf("the data in the files is same ") ;
 		break;
 	case DUMMY:
-		run_dummy_case();
+		runDummyCase();
 		break;
 	default:
 		printf("unsupported value");

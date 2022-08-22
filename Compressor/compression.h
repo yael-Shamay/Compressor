@@ -2,5 +2,5 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utities.h"
-#include "file_operaitions_API.h"
+#include "fileOperaitionAPI.h"
 char* compression();

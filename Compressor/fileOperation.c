@@ -1,18 +1,17 @@
-#include "file_operaitions_API.h"
-int readDataFromFile(char* destBuffer,int size,int count, FILE* srcFd) {
- return	fread(destBuffer, size, count, srcFd);
+#include "fileOperaitionAPI.h"
+int readDataFromFile(char* destBuffer,int count, FILE* srcFd) {
+ return	fread(destBuffer, 1, count, srcFd);
 }
-void writeDataToFile(char* srcBuffer, int size,int count, FILE* outFd) {
-	fwrite(&srcBuffer, size, count, outFd);
+void writeDataToFile(char* srcBuffer,int count, FILE* outFd) {
+	fwrite(&srcBuffer, 1, count, outFd);
 }
 FILE* openFile(char* path, char *mode) {
-	FILE* file_ptr;
-	file_ptr = fopen(path,mode);
-	if (file_ptr == NULL) {
+	FILE* filePtr= fopen(path,mode);
+	if (filePtr == NULL) {
 		printf("\nError file not exist!");
 		exit(1);
 	}
-	return file_ptr;
+	return filePtr;
 }
 void closeFile(FILE* file_ptr)
 {
