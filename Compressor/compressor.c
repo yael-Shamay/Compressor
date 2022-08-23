@@ -38,7 +38,7 @@ void runDummyCase() {
 		printf("File type error\n");
 		exit(1);
 	}
-	getReletivePath(srcFilePath,&outputFilePath);
+	getReletivePath(srcFilePath,outputFilePath);
 	printf("\n%s - outputFilePath", outputFilePath);
 //	char* outputFilePath = getReletivePath(srcFilePath);
 	FILE* srcFd,* outFd;

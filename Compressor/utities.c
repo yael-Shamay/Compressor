@@ -36,17 +36,14 @@ Bool isValidTextFileExtention(const char* path) {
 	}
 	return False;
 }
-void getReletivePath(char* srcPath, char** desPath) {
+void getReletivePath(char* srcPath, char* desPath) {
 	int indexCat = 0;
-	char newPath[MAX_PATH_LEN];
 	int len = strlen(srcPath);
 	for (int i = 0; i < len; i++)
 	{
 		if (srcPath[i] == '\\')
 			indexCat = i;
-		newPath[i] = srcPath[i];
+		desPath[i] = srcPath[i];
 	}
-	newPath[indexCat] = '\0';
-	//strcat(newPath,"out.rmy");
-	*desPath = newPath;
+	desPath[indexCat] = '\0';
 }
