@@ -6,7 +6,7 @@ char* getPath() {
 	char path[MAX_PATH_LEN];
 	printf("Insert a file path\n");
 	getchar();
-	scanf("%s",path);
+	scanf("%s", path);
 	return path;
 }
 void getPathToBuffer(char* pathBuffer, char* enterPathMessage) {
@@ -26,12 +26,13 @@ void getFileExtention(const char* filePath, char** extention)
 }
 Bool isValidTextFileExtention(const char* path) {
 	char* fileExtention;
-	char* validTextExtentions[EXTENTION_LEN] = { "c","cpp","css","py","txt","java" };
-	getFileExtention(path,&fileExtention);
+	char* validTextExtentions[EXTENTION_LEN] = { "c","cpp","css","py","txt","java","rmy" };
+	getFileExtention(path, &fileExtention);
 	fileExtention += 1;
-	for (int i = 0; i < sizeof(validTextExtentions)-1 / EXTENTION_LEN; i++)
+	int len = sizeof(validTextExtentions) / sizeof(validTextExtentions[0]);
+	for (int i = 0; i < len; i++)
 	{
-		if (strcmp(fileExtention,validTextExtentions[i])==0)
+		if (strcmp(fileExtention, validTextExtentions[i]) == 0)
 			return True;
 	}
 	return False;
@@ -46,4 +47,13 @@ void getReletivePath(char* srcPath, char* desPath) {
 		desPath[i] = srcPath[i];
 	}
 	desPath[indexCat] = '\0';
+}
+void createPathToInputFile(char* srcPath, char* desPath) {
+	getReletivePath(srcPath, desPath);
+	char* srcPathExtention;
+	getFileExtention(srcPath, &srcPathExtention);
+	if (strncmp(srcPathExtention, ".rmy", sizeof("rmy")))
+		strcat(desPath, "\\out.rmy");
+	else
+		strcat(desPath, "\\out.txt");
 }

@@ -12,4 +12,4 @@ void getPathToBuffer(char* pathBuffer,char* enterPathMessage);
 void getFileExtention(const char*, char**);
 Bool isValidTextFileExtention(const char* path);
 void getReletivePath(char* srcPath, char* desPath);
-//char* getReletivePath(const char* srcPath);
+void createPathToInputFile(char* srcPath, char* desPath);

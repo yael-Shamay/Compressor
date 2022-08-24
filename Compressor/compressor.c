@@ -36,11 +36,10 @@ void runDummyCase() {
 	if (!isValidTextFileExtention(srcFilePath))
 	{
 		printf("File type error\n");
-		exit(1);
+   		exit(1);
 	}
-	getReletivePath(srcFilePath,outputFilePath);
+	createPathToInputFile(srcFilePath, outputFilePath);
 	printf("\n%s - outputFilePath", outputFilePath);
-//	char* outputFilePath = getReletivePath(srcFilePath);
 	FILE* srcFd,* outFd;
 	srcFd = openFile(srcFilePath,"rb");
 	outFd = openFile(outputFilePath, "w+b");
