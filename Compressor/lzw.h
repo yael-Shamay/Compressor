@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "utities.h"
 #include "fileOperaitionAPI.h"
+
 #pragma once
 #define DICT_SIZE	(1 << 20)
 #define HASH_SIZE  DICT_SIZE

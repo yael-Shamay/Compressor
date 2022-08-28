@@ -1,4 +1,4 @@
-#include "compression.h"
+#include "lzw.h"
 
 #pragma warning(disable:4996)
 #define __STDC_WANT_LIB_EXT1__ 1

@@ -136,7 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compare.h" />
-    <ClInclude Include="compression.h" />
+    <ClInclude Include="lzw.h" />
     <ClInclude Include="deCompression.h" />
     <ClInclude Include="fileOperaitionAPI.h" />
     <ClInclude Include="utities.h" />
