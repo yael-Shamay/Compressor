@@ -284,7 +284,8 @@ void lzw_enc_end(lzw_enc* ctx)
 lzw_enc lzw;
 
 void theCompression() {
-	char* srcFileName = getPath();
+	char srcFileName[MAX_PATH_LEN];
+	getPathToBuffer(srcFileName, "Enter file path to compress:");
 	FILE* srcFd = openFile(srcFileName, "rb");
 	char* outFileName = "out.txt";
 	FILE* outFd = openFile(outFileName, "w+b");
