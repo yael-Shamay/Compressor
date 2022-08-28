@@ -5,6 +5,8 @@
 #include <stdlib.h>
 typedef enum { COMPRESSION, DE_COMPRESSION, COMPARE, DUMMY }Option;
 #define BUFFER_SIZE 256
+char logFilePath[] = "C:\\Users\\pc\\Desktop\\project\\project\\new\\Compressor\\log.txt";
+FILE* logFd;
 void menu();
  void lzw_writebuf(void* stream, char* buf, unsigned size)
 {
@@ -17,7 +19,14 @@ void menu();
 void runDummyCase();
 void runChoosedOption(Option);
 void main() {
+	//open log file
+	logFd = openFile(logFilePath, "w");
+	if (logFd == NULL) {
+		printf("error logFile not open");
+		exit(-1);
+	}
 	menu();
+	closeFile(logFd);
 }
 void menu() {
 	Option selection;
@@ -26,12 +35,15 @@ void menu() {
 	printf("press 2 to compare two files\n");
 	printf("press 3 for dummy\n");
 	scanf_s("%d", &selection);
+	writeDataToLog(logFd,"option select : ");
+	writeDataToLog(logFd,(char*)selection);
 	runChoosedOption(selection);
 }
 void runDummyCase() {
 	char srcFilePath[MAX_PATH_LEN];
 	getPathToBuffer(srcFilePath,"Enter file path to run dummy:");
-
+	writeDataToLog(logFd,"\nthe srcPath is :  ");
+	writeDataToLog(logFd,srcFilePath);
 	char outputFilePath[MAX_PATH_LEN];
 	if (!isValidTextFileExtention(srcFilePath))
 	{
@@ -39,9 +51,11 @@ void runDummyCase() {
    		exit(1);
 	}
 	createPathToInputFile(srcFilePath, outputFilePath);
-	printf("\n%s - outputFilePath", outputFilePath);
+	writeDataToLog(logFd, "\nthe outputPath is :  ");
+	writeDataToLog(logFd, outputFilePath);
 	FILE* srcFd,* outFd;
 	srcFd = openFile(srcFilePath,"rb");
+
 	outFd = openFile(outputFilePath, "w+b");
 	char buf[BUFFER_SIZE];
     int len;
@@ -51,6 +65,7 @@ void runDummyCase() {
 	} while(len);
 	closeFile(srcFd);
 	closeFile(outFd);
+	//closeFile(logFd);
 }
 void runChoosedOption(Option selection) {
 	char* fileDeCompression;

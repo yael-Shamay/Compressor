@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "fileOperaitionAPI.h"
 #pragma once
 typedef enum { False, True } Bool;
 void getPathToBuffer(char* pathBuffer,char* enterPathMessage);

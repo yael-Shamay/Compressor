@@ -5,7 +5,7 @@ int readDataFromFile(char* destBuffer,int count, FILE* srcFd) {
 void writeDataToFile(char* srcBuffer,int count, FILE* outFd) {
 	fwrite(&srcBuffer, 1, count, outFd);
 }
-FILE* openFile(char* path, char *mode) {
+FILE* openFile(char* path, char* mode) {
 	FILE* filePtr= fopen(path,mode);
 	if (filePtr == NULL) {
 		printf("\nError file not exist!");
@@ -16,4 +16,7 @@ FILE* openFile(char* path, char *mode) {
 void closeFile(FILE* file_ptr)
 {
 	fclose(file_ptr);
+}
+void writeDataToLog(FILE* logFd, char* massage) {
+	fputs(massage, logFd);
 }
