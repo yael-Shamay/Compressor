@@ -11,10 +11,14 @@
 #define VALUE_NULL	(DICT_SIZE)
 #define SIZE_BUF 256
 
-typedef struct bit_buf {
+#define LZW_ERR_DICT_IS_FULL	-1
+#define LZW_ERR_INPUT_BUF		-2
+#define LZW_ERR_WRONG_CODE		-3
+
+typedef struct bitBuf {
 	unsigned long buf;  //bif
 	unsigned num;     //number of bit
-}bit_buf;
+}bitBuf;
 
 typedef struct node_enc
 {
@@ -24,7 +28,15 @@ typedef struct node_enc
 }
 node_enc;
 
-typedef struct lzw_enc
+typedef struct nodeDec
+{
+	int prev;		        // prefix code
+	unsigned char ch;		// last symbol
+}
+nodeDec;
+
+
+typedef struct lzwEnc
 {
 	int value;                       // current value 
 	unsigned  indexMax;              // maximal space in hash
@@ -33,17 +45,38 @@ typedef struct lzw_enc
 	void* outputFile;	             // pointer to the stream object
 	int valuesize;                   // count bit of write
 	unsigned indexBuf;		     	 // output code-buffer byte counter
-	bit_buf   bitBuf;				 // bit-buffer struct, holds the output bits
+	bitBuf   bitBuf;				 // bit-buffer struct, holds the output bits
 	unsigned char buff[BUFF_SIZE];   // output bits buffer
-}lzw_enc;
+}lzwEnc;
+
+typedef struct lzwDec
+{
+	int           code;				// current code
+	unsigned      max;				// maximal code
+	unsigned      codesize;			// number of bits in code
+	bitBuf        bitBuf;			  	// bit-buffer struct
+	void*         outputFile;	    // pointer to the stream object
+	unsigned      countbuf;				// input code-buffer byte counter
+	unsigned      sizebuf;				// input code-buffer size
+	unsigned char* inbuff;		    // input code-buffer
+	nodeDec    dict[DICT_SIZE];	    // code dictionary
+	unsigned char c;				// first char of the code
+	unsigned char buff[DICT_SIZE];	// output string buffer
+}
+lzwDec;
 
 //void compressionProcess();
 void theCompression();
 
-void lzw_enc_init(lzw_enc* ctx, void* outputFile);//init hash
-int  lzw_encode(lzw_enc* ctx, char buf[], unsigned size);
-void lzw_enc_end(lzw_enc* ctx);
+void lzw_enc_init(lzwEnc* ctx, void* outputFile);//init hash
+int  lzw_encode(lzwEnc* ctx, char buf[], unsigned size);
+void lzw_enc_end(lzwEnc* ctx);
 
+void lzwDecInit(lzwDec* ctx, void* file);
+int lzwDe(lzwDec* const ctx, char buf[], unsigned size);
+
+void lzwWritebuf(void* outFile, char* buf, unsigned size);
+unsigned lzwReadbuf(void* outFile, char* buf, unsigned size);
 
 void lzw_writebuf(void* stream, char* buf, unsigned size);
 unsigned lzw_readbuf(void* stream, char* buf, unsigned size);

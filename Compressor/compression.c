@@ -9,7 +9,6 @@
 #define debug_version 2
 //#define EXIT_FAILURE 1
 
-
 /******************************************************************************
 **  lzw_hash
 **  --------------------------------------------------------------------------
@@ -65,7 +64,7 @@ __inline static int lzw_hash(const int value, const unsigned char c)
 //	ctx->bitBuf.num = valuesize;
 //}
 
-static void lzw_enc_writebits(lzw_enc* const ctx, unsigned bits, unsigned nbits)
+static void lzw_enc_writebits(lzwEnc* const ctx, unsigned bits, unsigned nbits)
 {
 	// shift old bits to the left, add new to the right
 	ctx->bitBuf.buf = (ctx->bitBuf.buf << nbits) | (bits & ((1 << nbits) - 1));
@@ -99,7 +98,7 @@ static void lzw_enc_writebits(lzw_enc* const ctx, unsigned bits, unsigned nbits)
 **
 **  Return: -
 ******************************************************************************/
-void lzw_enc_init(lzw_enc* ctx, void* outputFile) {
+void lzw_enc_init(lzwEnc* ctx, void* outputFile) {
 
 	ctx->value = VALUE_NULL;  //non-existent value
 	ctx->indexMax = 255;      //all chars signal 
@@ -135,7 +134,7 @@ void lzw_enc_init(lzw_enc* ctx, void* outputFile) {
 **
 **  Return: -
 ******************************************************************************/
-static void lzw_enc_reset(lzw_enc* const ctx) {
+static void lzw_enc_reset(lzwEnc* const ctx) {
 
 	ctx->indexMax = 255;
 	ctx->valuesize = 8;
@@ -166,7 +165,7 @@ static void lzw_enc_reset(lzw_enc* const ctx) {
 **  Return: code representing the string or CODE_NULL.
 ******************************************************************************/
 
-static int lzw_enc_findstr(lzw_enc* const ctx, int value, unsigned char c)
+static int lzw_enc_findstr(lzwEnc* const ctx, int value, unsigned char c)
 {
 	int i;
 	//search hash
@@ -195,7 +194,7 @@ static int lzw_enc_findstr(lzw_enc* const ctx, int value, unsigned char c)
 **
 **  Return: index representing the string in dict or CODE_NULL if dictionary is full.
 ******************************************************************************/
-static int lzw_enc_addstr(lzw_enc* ctx, int value, unsigned char c)
+static int lzw_enc_addstr(lzwEnc* ctx, int value, unsigned char c)
 {
 
 	if (++ctx->indexMax == DICT_SIZE) {
@@ -228,7 +227,7 @@ static int lzw_enc_addstr(lzw_enc* ctx, int value, unsigned char c)
 **  Return: Number of processed bytes.
 ******************************************************************************/
 
-int lzw_encode(lzw_enc* ctx, char buf[], unsigned size) {
+int lzw_encode(lzwEnc* ctx, char buf[], unsigned size) {
 
 	if (!size)
 		return 0;//size==0
@@ -266,7 +265,7 @@ int lzw_encode(lzw_enc* ctx, char buf[], unsigned size) {
 	return size;
 }
 
-void lzw_enc_end(lzw_enc* ctx)
+void lzw_enc_end(lzwEnc* ctx)
 {
 #if DEBUG
 	printf("code %x (%d)\n", ctx->code, ctx->codesize);
@@ -281,7 +280,7 @@ void lzw_enc_end(lzw_enc* ctx)
 
 
 
-lzw_enc lzw;
+lzwEnc lzw;
 
 void theCompression() {
 	char srcFileName[MAX_PATH_LEN];
@@ -289,7 +288,7 @@ void theCompression() {
 	FILE* srcFd = openFile(srcFileName, "rb");
 	char* outFileName = "out.txt";
 	FILE* outFd = openFile(outFileName, "w+b");
-	lzw_enc* ctx = &lzw;
+	lzwEnc* ctx = &lzw;
 	char bufferInProgress[SIZE_BUF];
 	lzw_enc_init(ctx, outFd);
 	unsigned len;
