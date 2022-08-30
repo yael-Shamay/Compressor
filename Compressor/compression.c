@@ -6,7 +6,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #define _CRT_NONSTDC_NO_DEPRECATE
 #define WIN32_LEAN_AND_MEAN
-#define debug_version 2
+//#define debug_version 2
 //#define EXIT_FAILURE 1
 
 /******************************************************************************
@@ -277,12 +277,8 @@ void lzw_enc_end(lzwEnc* ctx)
 		lzw_enc_writebits(ctx, 0, 8 - ctx->bitBuf.num);
 	lzw_writebuf(ctx->outputFile, ctx->buff, ctx->indexBuf);
 }
-
-
-
 lzwEnc lzw;
-
-void theCompression() {
+void compressionProcess() {
 	char srcFileName[MAX_PATH_LEN];
 	getPathToBuffer(srcFileName, "Enter file path to compress:");
 	FILE* srcFd = openFile(srcFileName, "rb");

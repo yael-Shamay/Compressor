@@ -1,20 +1,28 @@
-#include "deCompression.h"
-#include "compression.h"
+
+#include "lzw.h"
 #include "compare.h"
 #include <stdio.h>
 #include <stdlib.h>
 typedef enum { COMPRESSION, DE_COMPRESSION, COMPARE, DUMMY }Option;
+
 #define BUFFER_SIZE 256
 char logFilePath[] = "C:\\Users\\pc\\Desktop\\project\\project\\new\\Compressor\\log.txt";
 FILE* logFd;
 void menu();
  void lzw_writebuf(void* stream, char* buf, unsigned size)
 {
-	fwrite(buf, size, 1, (FILE*)stream);
+	 if (stream != NULL)
+	    fwrite(buf, size, 1, (FILE*)stream);
 }
  unsigned lzw_readbuf(void* stream, char* buf, unsigned size)
 {
-	return fread(buf, 1, size, (FILE*)stream);
+	 unsigned t;
+	 if (stream != NULL) {
+		 t = fread(buf, 1, size, (FILE*)stream);
+		 
+	 }
+	 return t;
+
 }
 void runDummyCase();
 void runChoosedOption(Option);
@@ -23,7 +31,7 @@ void main() {
 	logFd = openFile(logFilePath, "w");
 	if (logFd == NULL) {
 		printf("error logFile not open");
-		exit(-1);
+		//exit(-1);
 	}
 	menu();
 	closeFile(logFd);
@@ -67,6 +75,8 @@ void runDummyCase() {
 	closeFile(outFd);
 	//closeFile(logFd);
 }
+
+
 void runChoosedOption(Option selection) {
 	char* fileDeCompression;
 	char* fileCompression;
@@ -74,7 +84,7 @@ void runChoosedOption(Option selection) {
 	switch (selection)
 	{
 	case COMPRESSION:
-		//fileCompression = compression();
+		compressionProcess();
 		//printf("%s", fileCompression);
 		break;
 	case DE_COMPRESSION:

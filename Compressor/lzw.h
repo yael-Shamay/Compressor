@@ -65,8 +65,8 @@ typedef struct lzwDec
 }
 lzwDec;
 
-//void compressionProcess();
-void theCompression();
+void compressionProcess();
+//void compression(lzwEnc lzw);
 
 void lzw_enc_init(lzwEnc* ctx, void* outputFile);//init hash
 int  lzw_encode(lzwEnc* ctx, char buf[], unsigned size);
