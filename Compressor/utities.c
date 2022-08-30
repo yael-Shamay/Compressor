@@ -57,3 +57,34 @@ void createPathToInputFile(char* srcPath, char* desPath) {
 	else
 		strcat(desPath, "\\out.txt");
 }
+//char* convertEnumToString(Option select) {
+//	switch (Option)
+//	{
+//	default:
+//		break;
+//	}
+//}
+void createLogFile() {
+	time_t rawtime;
+	time(&rawtime);
+	char logPath[MAX_PATH_LEN];
+	sprintf(logPath, "Logs\\log_SA_TEST_%s.txt", ctime(&rawtime));
+	// Lets convert space to _ in
+	char* p = logPath;
+	for (; *p; ++p)
+	{
+		if (*p == ' ' || *p == '\n')
+			*p = '_';
+		else if (*p == ':')
+			*p = '-';
+	}
+	logFd = openLogFile(logPath,"w");
+}
+void writeToLog(char* massage) {
+	if(logFd!=NULL)
+	writeDataToLog(logFd,massage);
+}
+void closeLog() {
+	if(logFd!=NULL)
+	closeFile(logFd);
+}

@@ -8,11 +8,18 @@ int readDataFromFile(char* destBuffer,int count, FILE* srcFd) {
 void writeDataToFile(char* srcBuffer,int count, FILE* outFd) {
 	fwrite(&srcBuffer, 1, count, outFd);
 }
-FILE* openFile(char* path, char* mode) {	
+FILE* openFile(char* path, char* mode) {
 	FILE* filePtr= fopen(path,mode);
 	if (filePtr == NULL) {
 		printf("\nError file not exist!");
 		exit(1);
+	}
+	return filePtr;
+}
+FILE* openLogFile(char* path,char* mode) {
+	FILE* filePtr = fopen(path, mode);
+	if (filePtr == NULL) {
+		printf("\n failed to create log file , error %d", errno);
 	}
 	return filePtr;
 }
@@ -21,7 +28,6 @@ void closeFile(FILE* file_ptr)
 	if (file_ptr != NULL)
 	fclose(file_ptr);
 }
-void writeDataToLog(FILE* logFd, char* massage) {
-	if(logFd!=NULL)
-	  fputs(massage, logFd);
+void writeDataToLog(FILE* logFd, char* massage){
+	fputs(massage, logFd);
 }
