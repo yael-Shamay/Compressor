@@ -1,14 +1,5 @@
 #include "lzw.h"
 
- void lzwWritebuf(void* outFile, char* buf, unsigned size)
-{
-	fwrite(buf, size, 1, (FILE*)outFile);
-}
-
-unsigned lzwReadbuf(void* outFile, char* buf, unsigned size)
-{
-	return fread(buf, 1, size, (FILE*)outFile);
-}
 
 /******************************************************************************
 ** lzw_dec_readbits
@@ -207,9 +198,29 @@ int lzwDe(lzwDec* const ctx, char buf[], unsigned size) {
 	}
 	return ctx->countbuf;
 }
-char* deCompression() {
+lzwDec lzw;
+void deCompression() {
+	char srcFileName[MAX_PATH_LEN];
+	getPathToBuffer(srcFileName, "Enter file path to Decompress:");
+	FILE* srcFd = openFile(srcFileName, "rb");
+	char* outFileName = "outDec.txt";
+	FILE* outFd = openFile(outFileName, "w+b");
+	lzwEnc* ctx = &lzw;
+	char bufferInProgress[SIZE_BUF];
+	unsigned   len;
+	lzwDecInit(ctx,outFd);
 
-}
-void deCompress() {
+	while (len = lzwReadbuf(srcFd, bufferInProgress, sizeof(bufferInProgress)))
+	{
+		int ret = lzwDe(ctx, bufferInProgress, len);
 
+		if (ret != len)
+		{
+			fprintf(stderr, "Error %d\n", ret);
+			break;
+		}
+	}
+
+	fclose(outFd);
+	fclose(srcFd);
 }

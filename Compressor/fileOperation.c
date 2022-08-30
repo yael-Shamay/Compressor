@@ -12,7 +12,7 @@ FILE* openFile(char* path, char* mode) {
 	FILE* filePtr= fopen(path,mode);
 	if (filePtr == NULL) {
 		printf("\nError file not exist!");
-		exit(1);
+		//exit(1);
 	}
 	return filePtr;
 }
