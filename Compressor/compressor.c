@@ -2,9 +2,18 @@
 #include "lzw.h"
 #include "compare.h"
 #include "utities.h"
+#include "Tests.h"
 #include <stdio.h>
 #include <stdlib.h>
-typedef enum { COMPRESSION, DE_COMPRESSION, COMPARE, DUMMY }Option;
+typedef enum 
+{ COMPRESSION,
+DE_COMPRESSION,
+COMPARE,
+DUMMY,
+TEST_CREATE1GB,
+TEST_CREATE4KB,
+NUM_OF_OPTIONS // must be always last
+}Option;
 
 #define BUFFER_SIZE 256
 //char logFilePath[] = "Logs\\log.txt";
@@ -33,12 +42,20 @@ void main() {
 	menu();
 	closeLog();
 }
+
 void menu() {
 	Option selection;
-	printf("press 0 to compresstion\n");
+	char  options[NUM_OF_OPTIONS][256] = { "compression","deCompresstion","compare","dummy","TEST_CREATE1GB","TEST_CREATE4KB"};
+	printf("The options are:\n");
+	for (int i = 0; i < NUM_OF_OPTIONS; i++)
+	{
+		printf("\tpress %d for %s\n",i, options[i]);
+	}
+	/*printf("press 0 to compresstion\n");
 	printf("press 1 to deCompresstion\n");
 	printf("press 2 to compare two files\n");
 	printf("press 3 for dummy\n");
+	printf("press 4 for TEST_CREATE1GB")*/
 	scanf_s("%d", &selection);
 	runChoosedOption(selection);
 }
@@ -102,6 +119,12 @@ void runChoosedOption(Option selection) {
 		break;
 	case DUMMY:
 		runDummyCase();
+		break;
+	case TEST_CREATE1GB:
+		test_run1GB();
+		break;
+	case TEST_CREATE4KB:
+		test_run4KB();
 		break;
 	default:
 		printf("unsupported value");

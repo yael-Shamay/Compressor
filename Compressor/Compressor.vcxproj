@@ -132,12 +132,14 @@
     <ClCompile Include="compressor.c" />
     <ClCompile Include="deCompression.c" />
     <ClCompile Include="fileOperation.c" />
+    <ClCompile Include="UnitTests.c" />
     <ClCompile Include="utities.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compare.h" />
     <ClInclude Include="lzw.h" />
     <ClInclude Include="fileOperaitionAPI.h" />
+    <ClInclude Include="Tests.h" />
     <ClInclude Include="utities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
