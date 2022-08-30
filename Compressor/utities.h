@@ -11,7 +11,8 @@
 #define DATA_SIZE 4096
 #define EXTENTION_LEN 7
 #define BUFFER_SIZE 256
-
+#define MASSAGE_LEEN 256
+char massage[256];
 FILE* logFd;
 
 typedef enum { False, True } Bool;

@@ -39,7 +39,7 @@ void runDummyCase();
 void runChoosedOption(Option);
 void main() {
 	createLogFile();
-	writeToLog("enter to project");
+	writeToLog("enter to project\n");
 	menu();
 	closeLog();
 }
@@ -53,44 +53,45 @@ void menu() {
 		printf("\tpress %d for %s\n",i, options[i]);
 	}
 	scanf_s("%d", &selection);
+	sprintf(massage, "the selection option %s case\n", options[selection]);
+	writeToLog(massage);
 	runChoosedOption(selection);
 }
 void runDummyCase() {
 	char srcFilePath[MAX_PATH_LEN];
 	getPathToBuffer(srcFilePath,"Enter file path to run dummy:");
-	writeToLog("\nthe srcPath is :  ");
-	writeToLog(srcFilePath);
 
-	/*char massage[256];
-	sprintf(massage,"\nthe srcPath is :  %s",srcFilePath);
-	writeToLog(massage);*/
+	sprintf(massage,"the srcPath is :  %s\n",srcFilePath);
+	writeToLog(massage);
 
 	char outputFilePath[MAX_PATH_LEN];
 	if (!isValidTextFileExtention(srcFilePath))
 	{
-		writeToLog("\nfile type error");
+		writeToLog("file type error\n");
 		printf("File type error\n");
    		exit(1);
 	}
 	createPathToInputFile(srcFilePath, outputFilePath);
-	writeToLog("\nthe outputPath is :  ");
-	writeToLog(outputFilePath);
+
+	sprintf(massage, "the outputPath is :  %s\n", outputFilePath);
+	writeToLog(massage);
+
 	FILE* srcFd,* outFd;
 	srcFd = openFile(srcFilePath,"rb");
-	writeToLog("\nsuccess open src file");
+	writeToLog("success open src file\n");
 	outFd = openFile(outputFilePath, "w+b");
-	writeToLog("\nsuccess open output file");
+	writeToLog("success open output file\n");
 	char buf[BUFFER_SIZE];
     int len;
-	writeToLog("\nstart read data to buffer and writethe buffer to file");
+	writeToLog("start read data to buffer and writethe buffer to file\n");
 	do {
 		len = readDataFromFile(buf,BUFFER_SIZE, srcFd);
 		writeDataToFile(&buf,len, outFd);
 	} while(len);
-	writeToLog("\nend read data to buffer and writethe buffer to file");
+	writeToLog("end read data to buffer and writethe buffer to file\n");
 	closeFile(srcFd);
 	closeFile(outFd);
-	writeToLog("\nsuccess close src and output file files");
+	writeToLog("success close src and output file files\n");
 }
 
 
