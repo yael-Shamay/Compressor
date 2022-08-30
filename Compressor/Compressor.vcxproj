@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -132,12 +132,14 @@
     <ClCompile Include="compressor.c" />
     <ClCompile Include="deCompression.c" />
     <ClCompile Include="fileOperation.c" />
+    <ClCompile Include="UnitTests.c" />
     <ClCompile Include="utities.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compare.h" />
     <ClInclude Include="lzw.h" />
     <ClInclude Include="fileOperaitionAPI.h" />
+    <ClInclude Include="Tests.h" />
     <ClInclude Include="utities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
