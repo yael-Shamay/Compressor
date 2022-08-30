@@ -5,19 +5,20 @@
 #include "Tests.h"
 #include <stdio.h>
 #include <stdlib.h>
+#define tested_version
+
 typedef enum 
 { COMPRESSION,
 DE_COMPRESSION,
 COMPARE,
+#ifdef tested_version
 DUMMY,
 TEST_CREATE1GB,
 TEST_CREATE4KB,
+#endif
 NUM_OF_OPTIONS // must be always last
 }Option;
 
-#define BUFFER_SIZE 256
-//char logFilePath[] = "Logs\\log.txt";
-//FILE* logFd;
 void menu();
  void lzw_writebuf(void* stream, char* buf, unsigned size)
 {
@@ -51,11 +52,6 @@ void menu() {
 	{
 		printf("\tpress %d for %s\n",i, options[i]);
 	}
-	/*printf("press 0 to compresstion\n");
-	printf("press 1 to deCompresstion\n");
-	printf("press 2 to compare two files\n");
-	printf("press 3 for dummy\n");
-	printf("press 4 for TEST_CREATE1GB")*/
 	scanf_s("%d", &selection);
 	runChoosedOption(selection);
 }
