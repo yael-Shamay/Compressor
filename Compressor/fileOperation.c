@@ -13,10 +13,17 @@ FILE* openFile(char* path, char* mode) {
 	}
 	return filePtr;
 }
+FILE* openLogFile(char* path,char* mode) {
+	FILE* filePtr = fopen(path, mode);
+	if (filePtr == NULL) {
+		printf("\n failed to create log file , error %d", errno);
+	}
+	return filePtr;
+}
 void closeFile(FILE* file_ptr)
 {
 	fclose(file_ptr);
 }
-void writeDataToLog(FILE* logFd, char* massage) {
+void writeDataToLog(FILE* logFd, char* massage){
 	fputs(massage, logFd);
 }

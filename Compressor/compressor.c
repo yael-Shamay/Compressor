@@ -1,12 +1,13 @@
 #include "deCompression.h"
 #include "compression.h"
 #include "compare.h"
+#include "utities.h"
 #include <stdio.h>
 #include <stdlib.h>
 typedef enum { COMPRESSION, DE_COMPRESSION, COMPARE, DUMMY }Option;
 #define BUFFER_SIZE 256
-char logFilePath[] = "C:\\Users\\pc\\Desktop\\project\\project\\new\\Compressor\\log.txt";
-FILE* logFd;
+//char logFilePath[] = "Logs\\log.txt";
+//FILE* logFd;
 void menu();
  void lzw_writebuf(void* stream, char* buf, unsigned size)
 {
@@ -19,14 +20,10 @@ void menu();
 void runDummyCase();
 void runChoosedOption(Option);
 void main() {
-	//open log file
-	logFd = openFile(logFilePath, "w");
-	if (logFd == NULL) {
-		printf("error logFile not open");
-		exit(-1);
-	}
+	createLogFile();
+	writeToLog("enter to project");
 	menu();
-	closeFile(logFd);
+	closeLog();
 }
 void menu() {
 	Option selection;
@@ -35,37 +32,44 @@ void menu() {
 	printf("press 2 to compare two files\n");
 	printf("press 3 for dummy\n");
 	scanf_s("%d", &selection);
-	writeDataToLog(logFd,"option select : ");
-	writeDataToLog(logFd,(char*)selection);
 	runChoosedOption(selection);
 }
 void runDummyCase() {
 	char srcFilePath[MAX_PATH_LEN];
 	getPathToBuffer(srcFilePath,"Enter file path to run dummy:");
-	writeDataToLog(logFd,"\nthe srcPath is :  ");
-	writeDataToLog(logFd,srcFilePath);
+	writeToLog("\nthe srcPath is :  ");
+	writeToLog(srcFilePath);
+
+	/*char massage[256];
+	sprintf(massage,"\nthe srcPath is :  %s",srcFilePath);
+	writeToLog(massage);*/
+
 	char outputFilePath[MAX_PATH_LEN];
 	if (!isValidTextFileExtention(srcFilePath))
 	{
+		writeToLog("\nfile type error");
 		printf("File type error\n");
    		exit(1);
 	}
 	createPathToInputFile(srcFilePath, outputFilePath);
-	writeDataToLog(logFd, "\nthe outputPath is :  ");
-	writeDataToLog(logFd, outputFilePath);
+	writeToLog("\nthe outputPath is :  ");
+	writeToLog(outputFilePath);
 	FILE* srcFd,* outFd;
 	srcFd = openFile(srcFilePath,"rb");
-
+	writeToLog("\nsuccess open src file");
 	outFd = openFile(outputFilePath, "w+b");
+	writeToLog("\nsuccess open output file");
 	char buf[BUFFER_SIZE];
     int len;
+	writeToLog("\nstart read data to buffer and writethe buffer to file");
 	do {
 		len = readDataFromFile(buf,BUFFER_SIZE, srcFd);
 		writeDataToFile(&buf,len, outFd);
 	} while(len);
+	writeToLog("\nend read data to buffer and writethe buffer to file");
 	closeFile(srcFd);
 	closeFile(outFd);
-	//closeFile(logFd);
+	writeToLog("\nsuccess close src and output file files");
 }
 void runChoosedOption(Option selection) {
 	char* fileDeCompression;
