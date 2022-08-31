@@ -125,8 +125,8 @@ void runChoosedOption(Option selection) {
 		break;
 	case COMPARE:
 		isSamedata = compare();
-		isSamedata ? printf("there is diffrance betwen the files "):
-			printf("the data in the files is same ") ;
+		isSamedata ? printf("the data in the files is same "):
+			printf("there is diffrance betwen the files ");
 		break;
 	case DUMMY:
 		runDummyCase();

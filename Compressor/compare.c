@@ -5,18 +5,18 @@ Bool compare() {
 	getPathToBuffer(decompressedFilename, "Enter decompressed file path:");
 	FILE* compressFile = openFile(compressedFilename, "rb");
 	FILE* deCompressFile = openFile(decompressedFilename, "rb");
-	int len1=1,len2=1;
+	int len1 , len2;
 	char buf1[BUFFER_SIZE], buf2[BUFFER_SIZE];
+	len1 = readDataFromFile(buf1, BUFFER_SIZE, compressFile);
+	len2 = readDataFromFile(buf2, BUFFER_SIZE, deCompressFile);
 	while (len1 && len2)
 	{
-	    len1=readDataFromFile(buf1, BUFFER_SIZE, compressFile);
-	    len2=readDataFromFile(buf2, BUFFER_SIZE, deCompressFile);
 		buf1[len1-1] = '\0';
 		buf2[len2-1] = '\0';
-		printf("buf1 %s\n", buf1);
-		printf("buf2 %s\n", buf2);
-	    if (strcmp(buf1, buf2)==1)
+	    if (strcmp(buf1, buf2)==1||len1!=len2)
 			return False;
+		len1 = readDataFromFile(buf1, BUFFER_SIZE, compressFile);
+		len2 = readDataFromFile(buf2, BUFFER_SIZE, deCompressFile);
 	}
 	if (len1 == len2)
 		return True;
