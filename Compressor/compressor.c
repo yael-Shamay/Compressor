@@ -53,15 +53,14 @@ void menu() {
 		printf("\tpress %d for %s\n",i, options[i]);
 	}
 	scanf_s("%d", &selection);
-	sprintf(massage, "the selection option %s case\n", options[selection]);
+	sprintf(massage, "the selection option %s case , time is :%s\n", options[selection], getTime());
 	writeToLog(massage);
 	runChoosedOption(selection);
 }
 void runDummyCase() {
 	char srcFilePath[MAX_PATH_LEN];
 	getPathToBuffer(srcFilePath,"Enter file path to run dummy:");
-
-	sprintf(massage,"the srcPath is :  %s\n",srcFilePath);
+	sprintf(massage,"the srcPath is :  %s . time is %s\n", srcFilePath, getTime());
 	writeToLog(massage);
 
 	char outputFilePath[MAX_PATH_LEN];
@@ -83,12 +82,14 @@ void runDummyCase() {
 	writeToLog("success open output file\n");
 	char buf[BUFFER_SIZE];
     int len;
-	writeToLog("start read data to buffer and writethe buffer to file\n");
+	sprintf(massage, "start read data to buffer and writethe buffer to file ,time is :%s\n", getTime());
+	writeToLog(massage);
 	do {
 		len = readDataFromFile(buf,BUFFER_SIZE, srcFd);
 		writeDataToFile(&buf,len, outFd);
 	} while(len);
-	writeToLog("end read data to buffer and writethe buffer to file\n");
+	sprintf(massage, "end read data to buffer and writethe buffer to file ,time is :%s\n", getTime());
+	writeToLog(massage);
 	closeFile(srcFd);
 	closeFile(outFd);
 	writeToLog("success close src and output file files\n");

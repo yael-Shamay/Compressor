@@ -57,13 +57,6 @@ void createPathToInputFile(char* srcPath, char* desPath) {
 	else
 		strcat(desPath, "\\out.txt");
 }
-//char* convertEnumToString(Option select) {
-//	switch (Option)
-//	{
-//	default:
-//		break;
-//	}
-//}
 void createLogFile() {
 	time_t rawtime;
 	time(&rawtime);
@@ -78,13 +71,23 @@ void createLogFile() {
 		else if (*p == ':')
 			*p = '-';
 	}
-	logFd = openLogFile(logPath,"w");
+	logFd = openLogFile(logPath, "w");
 }
 void writeToLog(char* massage) {
-	if(logFd!=NULL)
-	writeDataToLog(logFd,massage);
+	if (logFd != NULL)
+		writeDataToLog(logFd, massage);
 }
 void closeLog() {
-	if(logFd!=NULL)
-	closeFile(logFd);
+	if (logFd != NULL)
+		closeFile(logFd);
+}
+char* getTime(){
+	time_t     now;
+	struct tm* ts;
+	/* Get the current time */
+	now = time(NULL);
+
+	ts = localtime(&now);
+	strftime(time_buf, sizeof(time_buf), "%H:%M:%S", ts);
+	return time_buf;
 }
