@@ -67,6 +67,8 @@ lzwDec;
 
 void compressionProcess();
 void deCompression();
+void compressFile(char* fileToCompress, char* outFileName);
+
 //void compression(lzwEnc lzw);
 
 void lzw_enc_init(lzwEnc* ctx, void* outputFile);//init hash

@@ -202,13 +202,20 @@ lzwDec lzw;
 void deCompression() {
 	char srcFileName[MAX_PATH_LEN];
 	getPathToBuffer(srcFileName, "Enter file path to Decompress:");
-	FILE* srcFd = openFile(srcFileName, "rb");
 	char* outFileName = "outDec.txt";
-	FILE* outFd = openFile(outFileName, "w+b");
+
+}
+
+void decompressProcces(char* compressedFile, char* outFile)
+{
+
+	FILE* srcFd = openFile(compressedFile, "rb");
+	FILE* outFd = openFile(outFile, "w+b");
+
 	lzwEnc* ctx = &lzw;
 	char bufferInProgress[SIZE_BUF];
 	unsigned   len;
-	lzwDecInit(ctx,outFd);
+	lzwDecInit(ctx, outFd);
 
 	while (len = lzwReadbuf(srcFd, bufferInProgress, sizeof(bufferInProgress)))
 	{

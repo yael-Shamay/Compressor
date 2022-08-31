@@ -41,13 +41,20 @@ void createFile(char* filname, int sizeInKB)
    fclose(fd);
 }
 
-//I did it just 1MB KB*KB is MB
+
 void test_run1GB() {
    printf("creating file ....\n");
    fillbufferPattern("ABCD", 4);
    createFile("File_1GB_ABCD.txt", KB * KB);
    printf("finished to fill file\n");
    //here will be the test
+   char outFileName[256];
+  // createOutputFileName("File_1GB_ABCD.txt", outFileName);
+   compressFile("File_1GB_ABCD.txt", outFileName);
+  // decompression()
+   //decompressProcces
+   //compare
+   //print -- success or not
 
 }
 

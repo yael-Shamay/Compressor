@@ -281,8 +281,12 @@ lzwEnc lzw;
 void compressionProcess() {
 	char srcFileName[MAX_PATH_LEN];
 	getPathToBuffer(srcFileName, "Enter file path to compress:");
-	FILE* srcFd = openFile(srcFileName, "rb");
-	char* outFileName = "out.txt";
+	char* outFileName = "out.txt"; /// TODO 
+	compressFile(srcFileName, outFileName);
+}
+void compressFile(char* fileToCompress, char* outFileName)
+{
+	FILE* srcFd = openFile(fileToCompress, "rb");
 	FILE* outFd = openFile(outFileName, "w+b");
 	lzwEnc* ctx = &lzw;
 	char bufferInProgress[SIZE_BUF];
@@ -292,7 +296,6 @@ void compressionProcess() {
 	{
 		lzw_encode(ctx, bufferInProgress, len);
 	}
-
 	lzw_enc_end(ctx);
 	closeFile(srcFd);
 	closeFile(outFd);

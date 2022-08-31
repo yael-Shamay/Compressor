@@ -11,8 +11,8 @@ void writeDataToFile(char* srcBuffer,int count, FILE* outFd) {
 FILE* openFile(char* path, char* mode) {
 	FILE* filePtr= fopen(path,mode);
 	if (filePtr == NULL) {
-		printf("\nError file not exist!");
-		//exit(1);
+		printf("\n can't open file , error %d", errno);
+		exit(1);
 	}
 	return filePtr;
 }
