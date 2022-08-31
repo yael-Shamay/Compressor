@@ -20,6 +20,18 @@ NUM_OF_OPTIONS // must be always last
 }Option;
 
 void menu();
+void lzwWritebuf(void* outFile, char* buf, unsigned size)
+{
+	fwrite(buf, size, 1, (FILE*)outFile);
+}
+
+unsigned lzwReadbuf(void* outFile, char* buf, unsigned size)
+{
+	unsigned t = fread(buf, 1, size, (FILE*)outFile);
+
+	return t;
+}
+
  void lzw_writebuf(void* stream, char* buf, unsigned size)
 {
 	 if (stream != NULL)
@@ -107,8 +119,9 @@ void runChoosedOption(Option selection) {
 		//printf("%s", fileCompression);
 		break;
 	case DE_COMPRESSION:
-		fileDeCompression = deCompression();
-		printf("%s", fileDeCompression);
+		printf("hello I am in dec");
+		 deCompression();
+		//printf("%s", fileDeCompression);
 		break;
 	case COMPARE:
 		isSamedata = compare();
