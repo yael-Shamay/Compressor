@@ -15,6 +15,7 @@ COMPARE,
 DUMMY,
 TEST_CREATE1GB,
 TEST_CREATE4KB,
+TEST_RANDOM5MB,
 #endif
 NUM_OF_OPTIONS // must be always last
 }Option;
@@ -58,7 +59,7 @@ void main() {
 
 void menu() {
 	Option selection;
-	char  options[NUM_OF_OPTIONS][256] = { "compression","deCompresstion","compare","dummy","TEST_CREATE1GB","TEST_CREATE4KB"};
+	char  options[NUM_OF_OPTIONS][256] = { "compression","deCompresstion","compare","dummy","TEST_CREATE1GB","TEST_CREATE4KB", "Test_random5MB"};
 	printf("The options are:\n");
 	for (int i = 0; i < NUM_OF_OPTIONS; i++)
 	{
@@ -136,6 +137,9 @@ void runChoosedOption(Option selection) {
 		break;
 	case TEST_CREATE4KB:
 		test_run4KB();
+		break;
+	case TEST_RANDOM5MB:
+		test_runRandom5MB();
 		break;
 	default:
 		printf("unsupported value");
