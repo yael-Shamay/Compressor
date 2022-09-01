@@ -68,6 +68,7 @@ lzwDec;
 void compressionProcess();
 void deCompression();
 void compressFile(char* fileToCompress, char* outFileName);
+void decompressProcces(char* compressedFile, char* outFile);
 
 //void compression(lzwEnc lzw);
 
@@ -77,6 +78,7 @@ void lzw_enc_end(lzwEnc* ctx);
 
 void lzwDecInit(lzwDec* ctx, void* file);
 int lzwDe(lzwDec* const ctx, char buf[], unsigned size);
+
 
 void lzwWritebuf(void* outFile, char* buf, unsigned size);
 unsigned lzwReadbuf(void* outFile, char* buf, unsigned size);

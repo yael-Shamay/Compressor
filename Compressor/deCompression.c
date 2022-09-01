@@ -101,7 +101,7 @@ static int lzwDecAddstr(lzwDec *const ctx, int code, unsigned char c) {
 	//c already in dict
  	if (code == VALUE_NULL)
 		return c;
-	//unplace in dict
+	// dict is full
 	if (++ctx->max == VALUE_NULL)
 		return VALUE_NULL;
 	//put <code>+<c> in dict
@@ -203,7 +203,7 @@ void deCompression() {
 	char srcFileName[MAX_PATH_LEN];
 	getPathToBuffer(srcFileName, "Enter file path to Decompress:");
 	char* outFileName = "outDec.txt";
-
+	decompressProcces(srcFileName, outFileName);
 }
 
 void decompressProcces(char* compressedFile, char* outFile)
@@ -212,7 +212,7 @@ void decompressProcces(char* compressedFile, char* outFile)
 	FILE* srcFd = openFile(compressedFile, "rb");
 	FILE* outFd = openFile(outFile, "w+b");
 
-	lzwEnc* ctx = &lzw;
+	lzwDec* ctx = &lzw;
 	char bufferInProgress[SIZE_BUF];
 	unsigned   len;
 	lzwDecInit(ctx, outFd);
