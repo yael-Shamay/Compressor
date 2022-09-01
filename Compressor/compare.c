@@ -6,7 +6,7 @@ Bool compare() {
 	Bool b=compareWithPath(compressedFilename,decompressedFilename);
 	return b;
 }
-Bool compareWithPath(compressedFilename, decompressedFilename) {
+Bool compareWithPath(char* compressedFilename,char* decompressedFilename) {
 	printf("compressedFilename%s\ndecompressedFilename%s", compressedFilename, decompressedFilename);
 	char decompressCompressedFilename[MAX_PATH_LEN];
 	createPathToInputFile(compressedFilename, decompressCompressedFilename);
