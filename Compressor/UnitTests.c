@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Tests.h"
 #define _FILE_OFFSET_BITS 64
 
 #define KB 1024
@@ -45,17 +46,15 @@ void createFile(char* filname, int sizeInKB)
 void test_run1GB() {
    printf("creating file ....\n");
    fillbufferPattern("ABCD", 4);
-   createFile("File_1GB_ABCD.txt", KB * KB);
+   char inputFileName[] = "File_1GB_ABCD.txt";
+   createFile(inputFileName, KB * KB);
    printf("finished to fill file\n");
-   //here will be the test
    char outFileName[256];
-  // createOutputFileName("File_1GB_ABCD.txt", outFileName);
-   compressFile("File_1GB_ABCD.txt", outFileName);
-  // decompression()
-   //decompressProcces
-   //compare
-   //print -- success or not
-
+   createPathToInputFile(inputFileName, outFileName);
+   Bool isSamedata = comparewithPath(inputFileName, outFileName);
+   isSamedata ? printf("the data in the files is same ") :
+       printf("there is diffrance betwen the files \n");
+   printf("success test\n");
 }
 
 void test_run4KB() {
