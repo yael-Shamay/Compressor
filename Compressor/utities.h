@@ -30,3 +30,4 @@ void createLogFile();
 void writeToLog(char* massage);
 void closeLog();
 char* getTime();
+long getFileSize(FILE* fd);

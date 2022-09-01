@@ -91,3 +91,13 @@ char* getTime(){
 	strftime(time_buf, sizeof(time_buf), "%H:%M:%S", ts);
 	return time_buf;
 }
+
+//Note that this function must be done immediatly after open file (before start reads or writes)
+//because it moves the seek to the begining of file
+long getFileSize(FILE* fd)
+{
+	fseek(fd, 0, SEEK_END); //move to 0 bytes to the end
+	long fileSize = ftell(fd); //get the size (pos at end)
+	rewind(fd); //same as fseek(file,0,SEEK_SET), move the position to the begining
+	return fileSize;
+}
