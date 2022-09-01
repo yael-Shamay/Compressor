@@ -69,6 +69,9 @@ void compressionProcess();
 void deCompression();
 void compressFile(char* fileToCompress, char* outFileName);
 void decompressProcces(char* compressedFile, char* outFile);
+Bool compareWithPath(char* compressedFilename, char* decompressedFilename);
+
+
 
 //void compression(lzwEnc lzw);
 

@@ -4,6 +4,7 @@
 #include <string.h>
 #include "Tests.h"
 #include <time.h>
+#include "lzw.h"
 
 #define _FILE_OFFSET_BITS 64
 
@@ -84,7 +85,7 @@ void test_run1GB() {
    printf("finished to fill file\n");
    char outFileName[256];
    createPathToInputFile(inputFileName, outFileName);
-   Bool isSamedata = comparewithPath(inputFileName, outFileName);
+   Bool isSamedata = compareWithPath(inputFileName, outFileName);
    isSamedata ? printf("the data in the files is same ") :
        printf("there is diffrance betwen the files \n");
    printf("success test\n");
