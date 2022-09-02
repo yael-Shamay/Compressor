@@ -201,8 +201,9 @@ int lzwDe(lzwDec* const ctx, char buf[], unsigned size) {
 lzwDec lzw;
 void deCompression() {
 	char srcFileName[MAX_PATH_LEN];
+	char outFileName[MAX_PATH_LEN];
 	getPathToBuffer(srcFileName, "Enter file path to Decompress:");
-	char* outFileName = "outDec.txt";
+	createPathToInputFile(srcFileName, outFileName);
 	decompressProcces(srcFileName, outFileName);
 }
 

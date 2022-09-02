@@ -280,8 +280,9 @@ void lzw_enc_end(lzwEnc* ctx)
 lzwEnc lzw;
 void compressionProcess() {
 	char srcFileName[MAX_PATH_LEN];
+	char outFileName[MAX_PATH_LEN];
 	getPathToBuffer(srcFileName, "Enter file path to compress:");
-	char* outFileName = "out.txt"; /// TODO 
+	createPathToInputFile(srcFileName, outFileName);
 	compressFile(srcFileName, outFileName);
 }
 void compressFile(char* fileToCompress, char* outFileName)
