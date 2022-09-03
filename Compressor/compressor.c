@@ -117,12 +117,9 @@ void runChoosedOption(Option selection) {
 	{
 	case COMPRESSION:
 		compressionProcess();
-		//printf("%s", fileCompression);
 		break;
 	case DE_COMPRESSION:
-		printf("hello I am in dec");
 		 deCompression();
-		//printf("%s", fileDeCompression);
 		break;
 	case COMPARE:
 		isSamedata = compare();

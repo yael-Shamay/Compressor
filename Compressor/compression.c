@@ -279,6 +279,7 @@ void lzw_enc_end(lzwEnc* ctx)
 }
 lzwEnc lzw;
 void compressionProcess() {
+	writeToLog("compressionProcess function\n");
 	char srcFileName[MAX_PATH_LEN];
 	char outFileName[MAX_PATH_LEN];
 	getPathToBuffer(srcFileName, "Enter file path to compress:");
@@ -287,8 +288,18 @@ void compressionProcess() {
 }
 void compressFile(char* fileToCompress, char* outFileName)
 {
+	sprintf(massage, "compress:\nsrc file path to compress: %s\n compress file path : %s\n", fileToCompress, outFileName);
+	writeToLog(massage);
+
 	FILE* srcFd = openFile(fileToCompress, "rb");
+	writeToLog("open src file success\n");
 	FILE* outFd = openFile(outFileName, "w+b");
+	writeToLog("create output file success\n");
+	writeToLog("compressing...\n");
+
+	sprintf(massage, "src file size before compress: %ld\n", getFileSize(srcFd));
+	writeToLog(massage);
+
 	lzwEnc* ctx = &lzw;
 	char bufferInProgress[SIZE_BUF];
 	lzw_enc_init(ctx, outFd);
@@ -298,6 +309,10 @@ void compressFile(char* fileToCompress, char* outFileName)
 		lzw_encode(ctx, bufferInProgress, len);
 	}
 	lzw_enc_end(ctx);
+	writeToLog("end compress success\n");
+	sprintf(massage, "out file size after compress: %ld\n", getFileSize(outFd));
+	writeToLog(massage);
 	closeFile(srcFd);
 	closeFile(outFd);
+	writeToLog("close files success\n");
 }
