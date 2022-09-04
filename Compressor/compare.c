@@ -3,16 +3,24 @@ Bool compare() {
 	char compressedFilename[MAX_PATH_LEN], decompressedFilename[MAX_PATH_LEN];
 	getPathToBuffer(compressedFilename, "Enter compressed file path:");
 	getPathToBuffer(decompressedFilename, "Enter decompressed file path:");
-	Bool b=compareWithPath(compressedFilename,decompressedFilename);
-	return b;
+	Bool isSamedata =compareWithPath(compressedFilename,decompressedFilename);
+	isSamedata ? writeToLog("the data in the files is same ") :
+		writeToLog("there is diffrance betwen the files ");
+	writeToLog(massage);
+	return isSamedata;
 }
 Bool compareWithPath(char* compressedFilename,char* decompressedFilename) {
-	printf("compressedFilename%s\ndecompressedFilename%s\n", compressedFilename, decompressedFilename);
+	sprintf(massage, "file yo compare :\ncompressed file path : %s\n compressed file path : %s\n", compressedFilename,decompressedFilename);
+	writeToLog(massage);
 	char decompressCompressedFilename[MAX_PATH_LEN];
 	createPathToInputFile(compressedFilename, decompressCompressedFilename);
+	sprintf(massage, "create deCompress file from files compress\npath new deCompress file : %s\n ", decompressCompressedFilename);
+	writeToLog(massage);
 	decompressProcces(compressedFilename, decompressCompressedFilename);
 	FILE* compressFile = openFile(decompressCompressedFilename, "rb");
 	FILE* deCompressFile = openFile(decompressedFilename, "rb");
+	writeToLog("open file success\n");
+	writeToLog("comparing...\n");
 	int len1, len2;
 	char buf1[BUFFER_SIZE], buf2[BUFFER_SIZE];
 	len1 = readDataFromFile(buf1, BUFFER_SIZE, compressFile);
