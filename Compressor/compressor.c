@@ -166,6 +166,9 @@ void runChoosedOption(Option selection) {
 	case TEST_RANDOM5MB:
 		test_runRandom5MB();
 		break;
+	case TEST_EMPTYFILE:
+		test_runEmpty();
+		break;
 	default:
 		printf("unsupported value");
 		break;

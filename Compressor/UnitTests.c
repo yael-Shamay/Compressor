@@ -86,7 +86,7 @@ void test_run1GB() {
    char outFileName[256];
    createPathToInputFile(inputFileName, outFileName);
    Bool isSamedata = compareWithPath(inputFileName, outFileName);
-   isSamedata ? printf("the data in the files is same ") :
+   isSamedata ? printf("the data in the files is same \n") :
        printf("there is diffrance betwen the files \n");
    printf("success test\n");
 }
@@ -95,6 +95,7 @@ void test_run4KB() {
    printf("creating file ....\n");
    fillbufferPattern("TGH?", 4);
    createFile("File_4KB_TGH_.txt", 4 * KB);
+   printf("file name is : File_4KB_TGH_.txt\n");
    printf("finished to fill file\n");
    //here will be the test
 }
