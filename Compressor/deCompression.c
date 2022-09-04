@@ -200,6 +200,7 @@ int lzwDe(lzwDec* const ctx, char buf[], unsigned size) {
 }
 lzwDec lzw;
 void deCompression() {
+	writeToLog("compressionProcess function\n");
 	char srcFileName[MAX_PATH_LEN];
 	char outFileName[MAX_PATH_LEN];
 	getPathToBuffer(srcFileName, "Enter file path to Decompress:");
@@ -209,10 +210,16 @@ void deCompression() {
 
 void decompressProcces(char* compressedFile, char* outFile)
 {
-
+	sprintf(massage, "compress:\nsrc file path to deCompress: %s\n deCompress file path : %s\n", compressedFile, outFile);
+	writeToLog(massage);
 	FILE* srcFd = openFile(compressedFile, "rb");
+	writeToLog("open src file success\n");
 	FILE* outFd = openFile(outFile, "w+b");
+	writeToLog("create output file success\n");
+	writeToLog("deCompressing...\n");
 
+	sprintf(massage, "src file size before deCompress: %ld\n", getFileSize(srcFd));
+	writeToLog(massage);
 	lzwDec* ctx = &lzw;
 	char bufferInProgress[SIZE_BUF];
 	unsigned   len;
@@ -228,7 +235,10 @@ void decompressProcces(char* compressedFile, char* outFile)
 			break;
 		}
 	}
-
+	writeToLog("end deCompress success\n");
+	sprintf(massage, "out file size after deCompress: %ld\n", getFileSize(outFd));
+	writeToLog(massage);
 	fclose(outFd);
 	fclose(srcFd);
+	writeToLog("close files success\n");
 }

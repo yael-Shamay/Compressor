@@ -12,7 +12,6 @@ Bool compare() {
 Bool compareWithPath(char* compressedFilename,char* decompressedFilename) {
 	sprintf(massage, "file yo compare :\ncompressed file path : %s\n compressed file path : %s\n", compressedFilename,decompressedFilename);
 	writeToLog(massage);
-	printf("compressedFilename%s\ndecompressedFilename%s\n", compressedFilename, decompressedFilename);
 	char decompressCompressedFilename[MAX_PATH_LEN];
 	createPathToInputFile(compressedFilename, decompressCompressedFilename);
 	sprintf(massage, "create deCompress file from files compress\npath new deCompress file : %s\n ", decompressCompressedFilename);
