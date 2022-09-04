@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define tested_version
-//#define EXEC_VERSION
+#define EXEC_VERSION
 
 typedef enum 
 { COMPRESSION,
@@ -50,6 +50,26 @@ unsigned lzwReadbuf(void* outFile, char* buf, unsigned size)
 	 return t;
 
 }
+ int runOptionFromUI(int option, char* path1, char* path2)
+ {
+	 char outFileName[MAX_PATH_LEN];
+	 switch (option)
+	 {
+	 case 0:
+		 createPathToInputFile(path1, outFileName);
+		 compressFile(path1, outFileName);
+		 break;
+	 case 1:
+		 createPathToInputFile(path1, outFileName);
+		 decompressProcces(path1, outFileName);
+		 break;
+	 case 2:
+		 return compareWithPath(path1, path2);
+	 default:
+		 break;
+	 }
+	 return 1;
+ }
 void runDummyCase();
 void runChoosedOption(Option);
 void main(int argc, char	*argv[]) {
@@ -68,10 +88,12 @@ void main(int argc, char	*argv[]) {
 	printf("selection is %d\n", selection);
 #else
 	int selection = getUserInput();
+	runChoosedOption(selection);
 #endif // EXEC_VERSION
 
-	runChoosedOption(selection);
+	int ret = runOptionFromUI(selection, argv[2], argv[3]);
 	closeLog();
+	return ret;
 }
 int getCommandInput(char option) {
 	//switch (option)
