@@ -42,7 +42,7 @@ void getReletivePath(char* srcPath, char* desPath) {
 	int len = strlen(srcPath);
 	for (int i = 0; i < len; i++)
 	{
-		if (srcPath[i] == '\\')
+		if (srcPath[i] == '.')
 			indexCat = i;
 		desPath[i] = srcPath[i];
 	}
@@ -51,11 +51,20 @@ void getReletivePath(char* srcPath, char* desPath) {
 void createPathToInputFile(char* srcPath, char* desPath) {
 	getReletivePath(srcPath, desPath);
 	char* srcPathExtention;
-	getFileExtention(srcPath, &srcPathExtention);
-	if (strncmp(srcPathExtention, ".rmy", sizeof("rmy")))
-		strcat(desPath, "\\out.rmy");
+	strcpy(desPath, srcPath);
+	getFileExtention(desPath, &srcPathExtention);
+	char* ptrString;
+	char* changeExtention;
+	ptrString = strstr(srcPath, "rmy");
+	if (ptrString)
+	changeExtention = strtok(srcPathExtention, "rmy");
 	else
-		strcat(desPath, "\\out.txt");
+	{
+		strcpy(desPath, srcPath);
+		strcat(desPath, "rmy");
+	}
+	printf("des %s\n", desPath);
+	printf("src %s\n", srcPath);
 }
 void createLogFile() {
 	time_t rawtime;
