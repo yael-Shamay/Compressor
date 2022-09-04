@@ -106,6 +106,18 @@ void test_runEmpty() {
 	printf("finished to fill file\n");
 	//here will be the test
 }
+void test_runSpecialCharacters() {
+	printf("creating file ....\n");
+	createFile("Special/%Characters.txt", 0);
+	printf("finished to fill file\n");
+	//here will be the test
+}
+void test_runpathIncludePoints() {
+	printf("creating file ....\n");
+	createFile("Speci.al.Chara.cters.txt", 0);
+	printf("finished to fill file\n");
+	//here will be the test
+}
 void test_runRandom5MB() {
 	printf("creating file ....\n");
 	//fillBufferRandomPattern();
