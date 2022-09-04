@@ -30,9 +30,14 @@
     <script>
         var i=0;
         function myFunction() {
-            document.getElementById("image").innerHTML = "Hello JavaScript!";
+            document.getElementById("image").innerText = "Hello JavaScript!";
             console.log("hi! I am here!!!",i++);
             console.log(document.getElementById("image").src);
+        }
+         function comperssion() {
+            console.log(document.getElementById("comperssion").files);
+            console.log("hi! I am here!!!",i++);
+            console.log(document.getElementById("comperssion").value);
         }
 
     </script>
@@ -187,9 +192,9 @@
                 <div class="owl-carousel owl-theme">
                     <form action="/action_page.php">
                         <div style="cursor:default" class="item service-item">
-                            <label style='cursor:pointer' for='comperssion' class="icon" onclick="myFunction()">
-                                <i><img src="assets/image/icons/download-thin-240.png"></i>
-                                <input type='file' accept='.txt,.c,.cpp,.css,.py,.txt,.java'  id='comperssion' style='display:none;cursor:pointer' name='comperssion'>
+                            <label style='cursor:pointer' for='comperssion' class="icon">
+                                <i><img src="assets/image/icons/download-thin-240.png" ></i>
+                                <input  type='file'  accept='.txt,.c,.cpp,.css,.py,.txt,.java'  id='comperssion' style='display:none;cursor:pointer' name='comperssion' onclick="comperssion()">
                             </label>
                             <div>
                                 <!-- accept="c/*,cpp/*,css/*,py/*,txt/*,java" -->
