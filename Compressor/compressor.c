@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define tested_version
+//#define EXEC_VERSION
 
 typedef enum 
 { COMPRESSION,
@@ -20,7 +21,8 @@ TEST_RANDOM5MB,
 NUM_OF_OPTIONS // must be always last
 }Option;
 
-void menu();
+int getUserInput();
+int getCommandInput(char option);
 void lzwWritebuf(void* outFile, char* buf, unsigned size)
 {
 	fwrite(buf, size, 1, (FILE*)outFile);
@@ -50,14 +52,39 @@ unsigned lzwReadbuf(void* outFile, char* buf, unsigned size)
 }
 void runDummyCase();
 void runChoosedOption(Option);
-void main() {
+void main(int argc, char	*argv[]) {
+#ifdef EXEC_VERSION
+	if (argc < 2)
+	{
+		printf("missed option");
+		exit(1);
+	}
+	printf("The argument supplied is %s\n", argv[1]);
+#endif
 	createLogFile();
 	writeToLog("enter to project\n");
-	menu();
+#ifdef EXEC_VERSION
+	int selection = getCommandInput(argv[1][0]);
+	printf("selection is %d\n", selection);
+#else
+	int selection = getUserInput();
+#endif // EXEC_VERSION
+
+	runChoosedOption(selection);
 	closeLog();
 }
+int getCommandInput(char option) {
+	//switch (option)
+	//{
+	//case '1':
+	//	return 1;
+	//default:
+	//	break;
+	//}
+	return option - '0';
+}
 
-void menu() {
+int getUserInput() {
 	Option selection;
 	char  options[NUM_OF_OPTIONS][256] = { "compression","deCompresstion","compare","dummy","TEST_CREATE1GB","TEST_CREATE4KB", "Test_random5MB"};
 	printf("The options are:\n");
@@ -68,7 +95,7 @@ void menu() {
 	scanf_s("%d", &selection);
 	sprintf(massage, "the selection option %s case , time is :%s\n", options[selection], getTime());
 	writeToLog(massage);
-	runChoosedOption(selection);
+	return selection;	
 }
 void runDummyCase() {
 	char srcFilePath[MAX_PATH_LEN];
