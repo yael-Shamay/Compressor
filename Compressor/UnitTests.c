@@ -99,6 +99,12 @@ void test_run4KB() {
    //here will be the test
 }
 
+void test_runEmpty() {
+	printf("creating file ....\n");
+	createFile("Empty.txt",0);
+	printf("finished to fill file\n");
+	//here will be the test
+}
 void test_runRandom5MB() {
 	printf("creating file ....\n");
 	//fillBufferRandomPattern();

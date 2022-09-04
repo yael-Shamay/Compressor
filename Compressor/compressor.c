@@ -17,6 +17,7 @@ DUMMY,
 TEST_CREATE1GB,
 TEST_CREATE4KB,
 TEST_RANDOM5MB,
+TEST_EMPTYFILE,
 #endif
 NUM_OF_OPTIONS // must be always last
 }Option;
@@ -86,7 +87,7 @@ int getCommandInput(char option) {
 
 int getUserInput() {
 	Option selection;
-	char  options[NUM_OF_OPTIONS][256] = { "compression","deCompresstion","compare","dummy","TEST_CREATE1GB","TEST_CREATE4KB", "Test_random5MB"};
+	char  options[NUM_OF_OPTIONS][256] = { "COMPRESSION","DE_COMPRESSION","COMPARE","DUMMY","TEST_CREATE1GB","TEST_CREATE4KB", "TEST_RANDOM5MB","TEST_EMPTYFILE"};
 	printf("The options are:\n");
 	for (int i = 0; i < NUM_OF_OPTIONS; i++)
 	{
