@@ -10,7 +10,7 @@ Bool compare() {
 	return isSamedata;
 }
 Bool compareWithPath(char* compressedFilename,char* decompressedFilename) {
-	sprintf(massage, "file yo compare :\ncompressed file path : %s\n compressed file path : %s\n", compressedFilename,decompressedFilename);
+	sprintf(massage, "file to compare :\ncompressed file path : %s\n compressed file path : %s\n", compressedFilename,decompressedFilename);
 	writeToLog(massage);
 	char decompressCompressedFilename[MAX_PATH_LEN];
 	createPathToInputFile(compressedFilename, decompressCompressedFilename);
@@ -19,6 +19,13 @@ Bool compareWithPath(char* compressedFilename,char* decompressedFilename) {
 	decompressProcces(compressedFilename, decompressCompressedFilename);
 	FILE* compressFile = openFile(decompressCompressedFilename, "rb");
 	FILE* deCompressFile = openFile(decompressedFilename, "rb");
+	if (getFileSize(compressFile) == 0 || getFileSize(deCompressFile) == 0) {
+		writeToLog("one file to compare is empty file\ndo exit\n");
+		printf("one file to compare is empty file\n");
+		closeFile(compressedFilename);
+		closeFile(decompressedFilename);
+		exit(-1);
+	}
 	writeToLog("open file success\n");
 	writeToLog("comparing...\n");
 	int len1, len2;
