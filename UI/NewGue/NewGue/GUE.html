@@ -30,10 +30,15 @@
     <script>
         var i=0;
         function myFunction() {
-            document.getElementById("image").innerHTML = "Hello JavaScript!";
+            document.getElementById("image").innerText = "Hello JavaScript!";
             console.log("hi! I am here!!!",i++);
             console.log(document.getElementById("image").src);
-       }
+        }
+         function comperssion() {
+            console.log(document.getElementById("comperssion").files);
+            console.log("hi! I am here!!!",i++);
+            console.log(document.getElementById("comperssion").value);
+        }
 
        function getFileToCompress() {
           debugger
@@ -147,27 +152,34 @@
         </div>
     </section>
     <!-- ***** Features Big Item End ***** -->
-    <!-- ***** Features Small Start ***** -->
+    <!-- ***** Features Small Start ***** --> 
+
+
+    <!-- 11111111111111111 -->
+
+
     <section class="section" id="services">
         <div class="container">
             <div class="row">
                 <div class="owl-carousel owl-theme">
                     <form action="/action_page.php">
                         <div style="cursor:default" class="item service-item">
-                            <label style='cursor:pointer' for='image' class="icon">
+                            <label style='cursor:pointer' for='image' class="icon" onclick="myFunction()">
                                 <i><img src="assets/image/icons/download-thin-240.png"></i>
                                 <input type='file' id='image' style='display:none;cursor:pointer' name='image'>
                             </label>
                             <div>
+                                <!-- accept="c/*,cpp/*,css/*,py/*,txt/*,java" -->
                                 <!-- type="file" id="myfile" name="myfile" -->
                                 <h5 class="service-title">Compression</h5>
                                 <p>
                                    Select the file you want to compress <br />
-                                   <input type='file' id='CompressInput' style='cursor:pointer' >
+                                   <input type='file' id='CompressInput'  accept='.txt,.c,.cpp,.css,.py,.txt,.java' style='cursor:pointer' >
                                 </p>
                                 <p>
                                     Note that the file must end with an extension: css,py,txt,c,cpp,java
                                 </p>
+                      
                             </div>
                             <a type="submit" href="#" style="color:black" class="main-button"  onclick="getFileToCompress()">OK</a>
                         </div>
@@ -181,7 +193,7 @@
                         <div style='cursor:default' class="item service-item">
                             <label style='cursor:pointer' for='image' class="icon" onclick="myFunction()">
                                 <i><img src="assets/image/icons/external-link-thin-240.png"></i>
-                                <input type='file' id='image' style='display:none;cursor:pointer' name='image'>
+                                <input type='file' accept='.rmytxt,.rmyc,.rmycpp,.rmycss,.py,.rmytxt,.rmyjava'  id='image' style='display:none;cursor:pointer' name='image'>
                             </label>
                             <h5 class="service-title">Decompression</h5>
                             <p>Select the file you want to decompress</p>
@@ -228,7 +240,7 @@
                             <p>Fusce sollicitudin feugiat risus,
                             tempus faucibus arcu blandit nec. 
                             Duis auctor dolor eu scelerisque vestibulum.</p>
-                            <a type="submit" style='cursor:default' href="#" class="main-button">OK</a>
+                            <a type="submit" style="color:black" href="#" class="main-button">OK</a>
                         </div>
                     </form>
                         <!--<div class="item service-item">
