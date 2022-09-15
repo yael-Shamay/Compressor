@@ -293,6 +293,12 @@ void compressFile(char* fileToCompress, char* outFileName)
 
 	FILE* srcFd = openFile(fileToCompress, "rb");
 	writeToLog("open src file success\n");
+	if (getFileSize(srcFd) == 0) {
+		writeToLog("src is empty file\n");
+		printf("src is empty file\ndo exit\n");
+		closeFile(srcFd);
+		exit(-1);
+	}
 	FILE* outFd = openFile(outFileName, "w+b");
 	writeToLog("create output file success\n");
 	writeToLog("compressing...\n");

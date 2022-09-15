@@ -216,6 +216,13 @@ void decompressProcces(char* compressedFile, char* outFile)
 	writeToLog("open src file success\n");
 	FILE* outFd = openFile(outFile, "w+b");
 	writeToLog("create output file success\n");
+	if (getFileSize(srcFd) == 0) {
+		writeToLog("src is empty file\n");
+		printf("src is empty file\ndo exit\n");
+		closeFile(srcFd);
+		exit(-1);
+	}
+
 	writeToLog("deCompressing...\n");
 
 	sprintf(massage, "src file size before deCompress: %ld\n", getFileSize(srcFd));
