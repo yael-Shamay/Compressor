@@ -1,5 +1,6 @@
-#include "file_operaitions_API.h"
+#include "fileOperaitionAPI.h"
 #include "utities.h"
-typedef enum { True, False }Bool;
+#include "lzw.h"
 Bool compare();
-Bool checke_file_extension(char*);
+Bool compareWithPath(char* compressFile,char* deCompressFile);
+

@@ -1,12 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
-#define MAX_PASH 100
-#define DATA_SIZE 10000
 #include <stdio.h>
 #include <stdlib.h>
 #include "utities.h"
-char* get_path();
-char* read_file();
-char* data_To_write();
-void write_file();
-FILE* open_file(char*, char);
-void close_file(FILE*);
+void writeDataToFile(char* srcBuffer, int size, int count, FILE* outFd);
+int readDataFromFile(char* destBuffer, int size, int count, FILE* srcFd);
+FILE* openFile(char* path, char* mode);
+void closeFile(FILE*);

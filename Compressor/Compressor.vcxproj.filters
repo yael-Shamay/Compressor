@@ -24,7 +24,7 @@
     <ClCompile Include="compression.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="file_operation.c">
+    <ClCompile Include="fileOperation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="utities.c">
@@ -33,21 +33,24 @@
     <ClCompile Include="compare.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UnitTests.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="deCompression.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="compression.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="file_operaitions_API.h">
+    <ClInclude Include="fileOperaitionAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="compare.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lzw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,0 +1,29 @@
+body {
+    background-color: #32c2eb;
+    background-image: url("assets/light.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    /* background-position: right top; */
+  }
+
+  h1{
+    
+      stroke: black;
+      stroke-width: 30%;
+      margin-left: 10%;
+      margin-top: 10%;
+      margin-right: 70%;
+      color: rgb(255, 255, 255);
+  }
+
+  a{
+     border-style: ridge;
+     background-color: white;
+      margin-left: 10%;
+      color:#1a7edf;
+      border-color: #1a7edf;
+      border: 5px;
+      border-radius: 10%;
+      font-size: x-large;
+  }
