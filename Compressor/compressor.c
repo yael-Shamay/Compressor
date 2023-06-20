@@ -75,6 +75,7 @@ unsigned lzwReadbuf(void* outFile, char* buf, unsigned size)
  }
 void runDummyCase();
 void runChoosedOption(Option);
+// script_name.exe option src_file out_file  (0-compress 1-decompress 2-compare)
 void main(int argc, char	*argv[]) {
 #ifdef EXEC_VERSION
 	if (argc < 2)
@@ -84,7 +85,7 @@ void main(int argc, char	*argv[]) {
 	}
 	printf("The argument supplied is %s\n", argv[1]);
 #endif
-	createLogFile();
+	//createLogFile();
 	writeToLog("enter to project\n");
 #ifdef EXEC_VERSION
 	int selection = getCommandInput(argv[1][0]);
