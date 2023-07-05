@@ -70,7 +70,7 @@ void createLogFile() {
 	time_t rawtime;
 	time(&rawtime);
 	char logPath[MAX_PATH_LEN];
-	sprintf(logPath, "Logs\\log_SA_TEST_%s.txt", ctime(&rawtime));
+	sprintf(logPath, "log_SA_TEST_%s.txt", ctime(&rawtime));
 	// Lets convert space to _ in
 	char* p = logPath;
 	for (; *p; ++p)

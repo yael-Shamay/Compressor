@@ -56,6 +56,7 @@ unsigned lzwReadbuf(void* outFile, char* buf, unsigned size)
  int runOptionFromUI(int option, char* path1, char* path2)
  {
 	 char outFileName[MAX_PATH_LEN];
+	 Bool isSamedata = 0;
 	 switch (option)
 	 {
 	 case 0:
@@ -67,7 +68,8 @@ unsigned lzwReadbuf(void* outFile, char* buf, unsigned size)
 		 decompressProcces(path1, outFileName);
 		 break;
 	 case 2:
-		 return compareWithPath(path1, path2);
+		 isSamedata = compareWithPath(path1, path2);
+		 isSamedata ? printf("the data in the files is same ") : printf("there is diffrance betwen the files ");
 	 default:
 		 break;
 	 }
@@ -77,6 +79,7 @@ void runDummyCase();
 void runChoosedOption(Option);
 // script_name.exe option src_file out_file  (0-compress 1-decompress 2-compare)
 void main(int argc, char	*argv[]) {
+	int ret;
 #ifdef EXEC_VERSION
 	if (argc < 2)
 	{
@@ -85,7 +88,7 @@ void main(int argc, char	*argv[]) {
 	}
 	printf("The argument supplied is %s\n", argv[1]);
 #endif
-	//createLogFile();
+	createLogFile();
 	writeToLog("enter to project\n");
 #ifdef EXEC_VERSION
 	int selection = getCommandInput(argv[1][0]);
@@ -95,9 +98,11 @@ void main(int argc, char	*argv[]) {
 	runChoosedOption(selection);
 #endif // EXEC_VERSION
 
-	int ret = runOptionFromUI(selection, argv[2], argv[3]);
+#ifdef EXEC_VERSION
+	ret = runOptionFromUI(selection, argv[2], argv[3]);
+#endif
 	closeLog();
-	return ret;
+	return 0;
 }
 int getCommandInput(char option) {
 	//switch (option)
